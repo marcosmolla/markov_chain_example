@@ -2,7 +2,7 @@
 title: "Markov Chain Example"
 author: "Marco Smolla"
 date: "3/22/2021"
-output: html_document
+output: rmarkdown::github_document
 ---
 
 ```{r setup, include=FALSE}
