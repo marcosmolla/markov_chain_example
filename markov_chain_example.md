@@ -49,7 +49,7 @@ library(igraph)
 Here is our example data:
 
 ``` r
-# Example transitions for a single individual (H=helper, R=recprocator, B=benefactor)
+# Example transitions for a single individual (H=helper, R=reciprocator, B=beneficiary)
 x <- sample(c("H", "R", "B"), 1000, replace = T, prob=c(.30, .60, .10)) # here I am creating a random vector of states (which in your case would be the sequence of states of your individual buyers)
 
 # Count: 
@@ -58,7 +58,7 @@ table(x)
 
     ## x
     ##   B   H   R 
-    ## 110 279 611
+    ##  84 319 597
 
 ``` r
 # Proportion
@@ -67,15 +67,15 @@ table(x)/length(x)
 
     ## x
     ##     B     H     R 
-    ## 0.110 0.279 0.611
+    ## 0.084 0.319 0.597
 
 ## Calculating a transition matrix - the packaged way
 
-If you prefer to use a ready made function, use the `markovchainFit()`
+If you prefer to use a ready-made function, use the `markovchainFit()`
 function from the `markovchain` package:
 
 ``` r
-# using markovchainFit from the markovchain pacakge
+# using markovchainFit from the markovchain package
 mcFit <- markovchainFit(data=x)
 # look at results
 show(mcFit)
@@ -87,34 +87,34 @@ show(mcFit)
     ##  B, H, R 
     ##  The transition matrix  (by rows)  is defined as follows: 
     ##            B         H         R
-    ## B 0.05454545 0.2636364 0.6818182
-    ## H 0.12544803 0.2724014 0.6021505
-    ## R 0.11311475 0.2836066 0.6032787
+    ## B 0.04761905 0.3333333 0.6190476
+    ## H 0.09717868 0.2821317 0.6206897
+    ## R 0.08221477 0.3372483 0.5805369
     ## 
     ## 
     ## $standardError
     ##            B          H          R
-    ## B 0.02226809 0.04895604 0.07872958
-    ## H 0.02120459 0.03124659 0.04645692
-    ## R 0.01361742 0.02156221 0.03144808
+    ## B 0.02380952 0.06299408 0.08584646
+    ## H 0.01745381 0.02973929 0.04411049
+    ## R 0.01174497 0.02378766 0.03120986
     ## 
     ## $confidenceLevel
     ## [1] 0.95
     ## 
     ## $lowerEndpointMatrix
-    ##            B         H         R
-    ## B 0.01090079 0.1676843 0.5275110
-    ## H 0.08388779 0.2111592 0.5110966
-    ## R 0.08642510 0.2413454 0.5416416
+    ##              B         H         R
+    ## B 0.0009532288 0.2098672 0.4507916
+    ## H 0.0629698436 0.2238437 0.5342347
+    ## R 0.0591950491 0.2906254 0.5193667
     ## 
     ## $upperEndpointMatrix
     ##            B         H         R
-    ## B 0.09819012 0.3595885 0.8361254
-    ## H 0.16700826 0.3336436 0.6932045
-    ## R 0.13980440 0.3258677 0.6649158
+    ## B 0.09428487 0.4567995 0.7873036
+    ## H 0.13138752 0.3404196 0.7071447
+    ## R 0.10523448 0.3838713 0.6417071
     ## 
     ## $logLikelihood
-    ## [1] -895.911
+    ## [1] -877.5118
 
 # Calculating a transition matrix - DIY
 
@@ -147,7 +147,7 @@ trans.matrix <- function(X, prob=T)
 }
 ```
 
-Let us test this function with out initial sequence `x`:
+Let us test this function without initial sequence `x`:
 
 ``` r
 # calculate transition matrix
@@ -156,9 +156,9 @@ mcFit2
 ```
 
     ##            B         H         R
-    ## B 0.05454545 0.2636364 0.6818182
-    ## H 0.12544803 0.2724014 0.6021505
-    ## R 0.11311475 0.2836066 0.6032787
+    ## B 0.04761905 0.3333333 0.6190476
+    ## H 0.09717868 0.2821317 0.6206897
+    ## R 0.08221477 0.3372483 0.5805369
 
 Compare `mcFit2` with the estimate of `mcFit` and you’ll see that this
 produces the same result. Of course, when using the markovchain package

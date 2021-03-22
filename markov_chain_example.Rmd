@@ -25,7 +25,7 @@ library(igraph)
 ## Example data
 Here is our example data:
 ```{r}
-# Example transitions for a single individual (H=helper, R=recprocator, B=benefactor)
+# Example transitions for a single individual (H=helper, R=reciprocator, B=beneficiary)
 x <- sample(c("H", "R", "B"), 1000, replace = T, prob=c(.30, .60, .10)) # here I am creating a random vector of states (which in your case would be the sequence of states of your individual buyers)
 
 # Count: 
@@ -36,9 +36,9 @@ table(x)/length(x)
 ```
 
 ## Calculating a transition matrix - the packaged way
-If you prefer to use a ready made function, use the `markovchainFit()` function from the `markovchain` package: 
+If you prefer to use a ready-made function, use the `markovchainFit()` function from the `markovchain` package: 
 ```{r}
-# using markovchainFit from the markovchain pacakge
+# using markovchainFit from the markovchain package
 mcFit <- markovchainFit(data=x)
 # look at results
 show(mcFit)
@@ -73,7 +73,7 @@ trans.matrix <- function(X, prob=T)
 }
 ```
 
-Let us test this function with out initial sequence `x`: 
+Let us test this function without initial sequence `x`: 
 
 ```{r}
 # calculate transition matrix
@@ -81,7 +81,7 @@ mcFit2 <- trans.matrix(x)
 mcFit2
 ```
 
-Compare `mcFit2`  with the estimate of `mcFit` and you'll see that this produces the same result. Of course, when using the markovchain package you receive much more information than the transition matrix.
+Compare `mcFit2` with the estimate of `mcFit` and you'll see that this produces the same result. Of course, when using the markovchain package you receive much more information than the transition matrix.
 
 ## Plot transition matrix as a graph
 Finally, let us plot the result as an `igraph` network:
